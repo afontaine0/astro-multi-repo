@@ -1,0 +1,3 @@
+[submodule "src/pages/_modules/astro-multi-repo-content"]
+	path = src/pages/_modules/astro-multi-repo-content
+	url = https://github.com/afontaine0/astro-multi-repo-content.git

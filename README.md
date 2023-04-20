@@ -1,18 +1,5 @@
 # Astro Starter Kit: Basics
 
-```
-npm create astro@latest -- --template basics
-```
-
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
-
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-![basics](https://user-images.githubusercontent.com/4677417/186188965-73453154-fdec-4d6b-9c34-cb35c248ae5b.png)
-
-
 ## 🚀 Project Structure
 
 Inside of your Astro project, you'll see the following folders and files:
@@ -27,15 +14,20 @@ Inside of your Astro project, you'll see the following folders and files:
 │   ├── layouts/
 │   │   └── Layout.astro
 │   └── pages/
-│       └── index.astro
+│       ├── index.astro
+│       ├── _modules/
+│       │   └── astro-multi-repo-content/
+│       │       └── get-started.mdx
+│       └── docs/
+│           └── some-package/->../_modules/astro-multi-repo-content/
 └── package.json
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+[`src/pages/_modules/astro-multi-repo-content`](./src/pages/_modules/astro-multi-repo-content) is a Git Submodule pointing to [afontaine0/astro-multi-repo-content](https://github.com/afontaine0/astro-multi-repo-content/tree/main).
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+[`src/pages/docs/some-package`](./src/pages/docs/some-package) is a symlink pointing to [`src/pages/_modules/astro-multi-repo-content`](./src/pages/_modules/astro-multi-repo-content). Therefore, the file [`get-started.mdx`](https://github.com/afontaine0/astro-multi-repo-content/blob/main/get-started.mdx) of the [afontaine0/astro-multi-repo-content](https://github.com/afontaine0/astro-multi-repo-content/tree/main) repository is directly available at [http://127.0.0.1:3000/docs/some-package/get-started](http://127.0.0.1:3000/docs/some-package/get-started).
 
-Any static assets, like images, can be placed in the `public/` directory.
+The URL [http://127.0.0.1:3000/docs/_modules/astro-multi-repo-content/get-started](http://127.0.0.1:3000/docs/_modules/astro-multi-repo-content/get-started) will not be available because [Astro does not build pages prefixed by an underscore](https://docs.astro.build/en/core-concepts/routing/#:~:text=You%20can%20exclude%20pages%20or%20directories%20from%20being%20built%20by%20prefixing%20their%20names%20with%20an%20underscore%20(_).).
 
 ## 🧞 Commands
 
@@ -50,6 +42,3 @@ All commands are run from the root of the project, from a terminal:
 | `npm run astro ...`    | Run CLI commands like `astro add`, `astro check` |
 | `npm run astro --help` | Get help using the Astro CLI                     |
 
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
